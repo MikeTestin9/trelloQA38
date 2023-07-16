@@ -91,8 +91,19 @@ public class HelperLogin extends HelperBase{
         }
     }
 
-    public boolean validateLoginSuccess() {
+    public boolean validateLoginSuccess2() {
         return isElementEnable(TEXT_WORKSPACE_AFTER_LOGIN);
+    }
+    public boolean validateLoginSuccess() {
+        String expectedResult = "workspace".toUpperCase().trim();
+        String actualResult = getText(TEXT_WORKSPACE_AFTER_LOGIN).trim().toUpperCase();
+        if(actualResult.contains(expectedResult)) {
+            return true;
+        } else {
+            logger.info("actual result: " + actualResult +
+                    "expected result: " + expectedResult);
+            return false;
+        }
     }
 
     public boolean validatePasswordInputEnable(WebDriverWait wait) {
